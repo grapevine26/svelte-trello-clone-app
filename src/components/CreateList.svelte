@@ -45,7 +45,9 @@
             </div>
         </div>
     {:else}
-        <div class="add-another-list" on:click={onEditMode}>+ 소현짱</div>
+        <div class="add-another-list" on:click={onEditMode}>
+            + Add another list
+        </div>
     {/if}
 </div>
 

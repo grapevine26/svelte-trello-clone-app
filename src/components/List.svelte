@@ -2,20 +2,20 @@
     import CreateCard from "~/components/CreateCard.svelte";
     import ListTitle from "~/components/ListTitle.svelte";
     import Card from "~/components/Card.svelte";
-    import { onMount, onDestroy } from 'svelte'
-    import { cards } from '~/store/list'
-    import Sortable from 'sortablejs'
+    import { onMount, onDestroy } from "svelte";
+    import { cards } from "~/store/list";
+    import Sortable from "sortablejs";
 
     export let list;
     export let sortableLists;
 
-    let sortableCards
-    let cardsEl
+    let sortableCards;
+    let cardsEl;
 
     function disableSortable(event) {
         console.log(event);
-        sortableLists.option('disabled', event.detail)
-        sortableCards.option('disabled', event.detail)
+        sortableLists.option("disabled", event.detail);
+        sortableCards.option("disabled", event.detail);
     }
 
     onMount(() => {
@@ -41,7 +41,7 @@
 <div class="list">
     <div class="list__inner">
         <div class="list__heading">
-            <ListTitle {list} on:editMode={disableSortable}/>
+            <ListTitle {list} on:editMode={disableSortable} />
             <p>
                 {list.cards.length} cards
             </p>
@@ -56,7 +56,25 @@
 </div>
 
 <style lang="scss">
+    :global(.list.sortable-ghost) {
+        position: relative;
+        opacity: 0.2;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 4px;
+        }
+    }
+    :global(.list.sortable-chosen) {
+        cursor: move;
+    }
     .list {
+        word-break: break-all;
         display: inline-block;
         width: 290px;
         height: 100%;
@@ -65,23 +83,7 @@
         white-space: normal;
         margin: 0 4px;
         line-height: 20px;
-        :global(&.sortable-ghost) {
-            position: relative;
-            opacity: 0.2;
-            &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #000;
-                border-radius: 4px;
-            }
-        }
-        :global(&.sortable-chosen) {
-            cursor: move;
-        }
+
         .list__inner {
             display: flex;
             flex-direction: column;

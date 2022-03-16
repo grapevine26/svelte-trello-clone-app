@@ -12,6 +12,7 @@ import { terser } from 'rollup-plugin-terser';
 import replace from 'rollup-plugin-replace';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
+import scss from "rollup-plugin-scss";
 // external
 import sveltePreprocess from 'svelte-preprocess';
 

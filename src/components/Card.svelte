@@ -10,7 +10,7 @@
     let title;
     let textareaEl;
 
-    const dispatch = createEventDispatcher()
+    const dispatch = createEventDispatcher();
 
     function saveCard() {
         if (title.trim()) {
@@ -32,17 +32,17 @@
     async function onEditMode() {
         isEditMode = true;
         title = card.title;
-        dispatch('editMode', true)
+        dispatch("editMode", true);
         await tick();
         textareaEl && textareaEl.focus();
     }
     function offEditMode() {
         isEditMode = false;
-        dispatch('editMode', false)
+        dispatch("editMode", false);
     }
     onDestroy(() => {
-        offEditMode()
-    })
+        offEditMode();
+    });
 </script>
 
 <div class="card">
@@ -73,25 +73,25 @@
 </div>
 
 <style lang="scss">
+    :global(.card.sortable-ghost) {
+        opacity: 0.1;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 4px;
+        }
+    }
+    :global(.card.sortable-chosen) {
+        cursor: move;
+    }
     .card {
         margin-bottom: 8px;
-        :global(&.sortable-ghost) {
-            opacity: 0.1;
-            position: relative;
-            &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #000;
-                border-radius: 4px;
-            }
-        }
-        :global(&.sortable-chosen) {
-            cursor: move;
-        }
         .title {
             background: #fff;
             padding: 6px 8px;

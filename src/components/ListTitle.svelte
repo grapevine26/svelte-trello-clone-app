@@ -38,7 +38,7 @@
     }
 
     onDestroy(() => {
-        offEditMode()
+        offEditMode
     })
 </script>
 
